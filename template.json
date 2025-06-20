@@ -1,0 +1,7 @@
+{
+  "id": "etl-pyspark-template",
+  "description": "A template for etl-pyspark application",
+  "app": "etl-pyspark",
+  "partitioner": "parquet-slicer",
+  "assembler": "parquet-assembler"
+}
