@@ -1,6 +1,6 @@
 #!/bin/bash
 # This script tests the whole etl-pyspark project locally, injecting the environment variables
-
+ 
 # Set the environment variables
 
 ## Partitioner environment variables
