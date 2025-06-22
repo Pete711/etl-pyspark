@@ -16,7 +16,7 @@ export CHUNK_NUMBER=0
 
 ## Assembler environment variables
 # export TASK_RESULTS_DIR='./task_results_dir/' 
-export OUTPUT_DIR="./output_dir/"
+export OUTPUT_DIR='./output_dir/'
 export ASSEMBLER_PARAMS='{}'
 
 # Launch test scripts
