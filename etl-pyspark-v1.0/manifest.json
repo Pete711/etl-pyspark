@@ -3,12 +3,12 @@
   "Version": "1.0",
   "Platform": "docker",
   "platform_config": {
-    "container": "python:latest"
+    "container": "python:3.11-slim"
   },
   "Entrypoint": "main.py",
   "device_requirements": {
     "min_cpu": 2,
     "min_memory": 2
   },
-  "Description": "An app named etl-pyspark that performs ETL operations using PySpark."
+  "Description": "Orchestrates the NYC Taxi ETL pipeline, coordinating data slicing, PySpark-based ETL processing, and result assembly with multithreading."
 }

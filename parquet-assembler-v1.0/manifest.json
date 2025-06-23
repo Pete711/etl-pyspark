@@ -1,15 +1,14 @@
 {
-  "name": "parquet-assembler",
-  "version": "1.0",
-  "type": "assembler",
-  "description": "An engine named parquet-assembler",
-  "entrypoint": "main.py",
-  "platform": "docker",
+  "Name": "parquet-assembler",
+  "Version": "1.0",
+  "Platform": "docker",
   "platform_config": {
-    "container": "python:latest"
+    "container": "python:3.11-slim"
   },
+  "Entrypoint": "parquet_assembler.py",
   "device_requirements": {
-    "min_cpu": 2,
-    "min_memory": 2
-  }
+    "min_cpu": 1,
+    "min_memory": 1
+  },
+  "Description": "Assembles chunk result text files into a single Parquet file using pandas and PyArrow."
 }

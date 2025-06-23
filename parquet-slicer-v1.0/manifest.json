@@ -1,15 +1,14 @@
 {
-  "name": "parquet-slicer",
-  "version": "1.0",
-  "type": "partitioner",
-  "description": "An engine named parquet-slicer",
-  "entrypoint": "main.py",
-  "platform": "docker",
+  "Name": "parquet-slicer",
+  "Version": "1.0",
+  "Platform": "docker",
   "platform_config": {
-    "container": "python:latest"
+    "container": "python:3.11-slim"
   },
+  "Entrypoint": "parquet_slicer.py",
   "device_requirements": {
-    "min_cpu": 2,
-    "min_memory": 2
-  }
+    "min_cpu": 1,
+    "min_memory": 1
+  },
+  "Description": "Downloads and slices a Parquet file into smaller chunks for parallel processing using PyArrow."
 }

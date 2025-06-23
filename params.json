@@ -1,0 +1,4 @@
+{
+    "chunk_size": 50000,
+    "dataset_url": "https://storage.googleapis.com/video-test-public/yellow_tripdata_2024-01.parquet"
+}

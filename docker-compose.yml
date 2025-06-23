@@ -1,0 +1,59 @@
+version: "3.8"
+services:
+  slicer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./slices:/app/slices
+      - ./params.json:/app/params.json:ro
+    command: python /app/parquet-slicer-v1.0/app/parquet_slicer.py
+    environment:
+      - DATA_URL=https://storage.googleapis.com/video-test-public/yellow_tripdata_2024-01.parquet
+      - CHUNK_SIZE=5000
+      - SLICE_DIR=/app/slices
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1G
+
+  etl:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./slices:/app/slices:ro
+      - ./input:/app/input
+      - ./results:/app/results
+      - ./output:/app/output
+      - ./params.json:/app/params.json:ro
+    command: python /app/etl-pyspark-v1.0/app/main.py
+    depends_on:
+      - slicer
+    environment:
+      - SPARK_LOCAL_DIR=/tmp/spark
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 2G
+
+  assembler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./results:/app/results:ro
+      - ./output:/app/output
+    command: python /app/parquet-assembler-v1.0/app/parquet_assembler.py
+    depends_on:
+      - etl
+    environment:
+      - RESULTS_DIR=/app/results
+      - OUTPUT_PATH=/app/output/result.parquet
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1G
